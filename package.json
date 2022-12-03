@@ -6,9 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zphhhhh/react-native-speech-iflytek.git"
+    "url": "git+https://github.com/Bilinxian/react-native-speech-iflytek.git"
   },
   "keywords": [
     "speech"
@@ -16,8 +17,8 @@
   "author": "zphhhhh",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zphhhhh/react-native-speech-iflytek/issues"
+    "url": "https://github.com/Bilinxian/react-native-speech-iflytek/issues"
   },
-  "homepage": "https://github.com/zphhhhh/react-native-speech-iflytek#readme",
+  "homepage": "https://github.com/Bilinxian/react-native-speech-iflytek#readme",
   "dependencies": {}
 }

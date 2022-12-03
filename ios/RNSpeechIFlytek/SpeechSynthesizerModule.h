@@ -1,11 +1,3 @@
-//
-//  SpeechSynthesizerModule.h
-//  RNSpeechIFlytek
-//
-//  Created by 张棚贺 on 2018/1/4.
-//  Copyright © 2018年 张棚贺. All rights reserved.
-//
-
 #import <React/RCTBridgeModule.h>
 #import <React/RCTEventEmitter.h>
 #import <iflyMSC/IFlyMSC.h>

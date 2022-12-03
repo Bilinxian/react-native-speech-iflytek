@@ -1,11 +1,3 @@
-//
-//  SpeechSynthesizerModule.m
-//  RNSpeechIFlytek
-//
-//  Created by 张棚贺 on 2018/1/4.
-//  Copyright © 2018年 张棚贺. All rights reserved.
-//
-
 #import "SpeechSynthesizerModule.h"
 #import <Foundation/Foundation.h>
 #import <iflyMSC/IFlyMSC.h>
@@ -46,10 +38,10 @@ RCT_EXPORT_METHOD(start: (NSString *) content) {
     if ([self.iFlySpeechSynthesizer isSpeaking]) {
         [self.iFlySpeechSynthesizer stopSpeaking];
     }
-    
+
     self.content = content;
     self.startTime = [[NSDate date] timeIntervalSince1970];
-    
+
     [self.iFlySpeechSynthesizer startSpeaking:content];
 }
 
@@ -136,17 +128,17 @@ RCT_EXPORT_METHOD(getParameter: (NSString *) parameter
     if (progress == 100) {
         self.endTime = [[NSDate date] timeIntervalSince1970];
         NSNumber * duration = [NSNumber numberWithDouble: self.endTime - self.startTime];
-        
+
         NSMutableDictionary * result = [NSMutableDictionary new];
         result[@"content"] = self.content;
         result[@"duration"] = duration;
         result[@"msg"] = msg;
-        
+
         if (self.filename != nil) {
             result[@"filename"] = self.filename;
         }
         self.filename = nil;
-        
+
         if (hasListeners) {
             [self sendEventWithName: @"onSynthesizerBufferCompletedEvent" body: result];
         }

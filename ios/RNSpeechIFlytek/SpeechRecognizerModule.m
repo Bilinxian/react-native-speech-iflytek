@@ -1,11 +1,3 @@
-//
-//  SpeechRecognizerModule.m
-//  RNSpeechIFlytek
-//
-//  Created by 张棚贺 on 2018/1/10.
-//  Copyright © 2018年 zphhhhh. All rights reserved.
-//
-
 #import "SpeechRecognizerModule.h"
 #import <Foundation/Foundation.h>
 #import <iflyMSC/IFlyMSC.h>
@@ -34,11 +26,11 @@ RCT_EXPORT_METHOD(init: (NSString *) AppId) {
     if (self.iFlySpeechRecognizer != nil) {
         return;
     }
-    
+
     NSString * initIFlytekString = [[NSString alloc] initWithFormat: @"appid=%@", AppId];
-    
+
     [IFlySpeechUtility createUtility: initIFlytekString];
-    
+
     self.iFlySpeechRecognizer = [IFlySpeechRecognizer sharedInstance];
     self.iFlySpeechRecognizer.delegate = self;
 }
@@ -47,10 +39,10 @@ RCT_EXPORT_METHOD(start) {
     if ([self.iFlySpeechRecognizer isListening]) {
         [self.iFlySpeechRecognizer cancel];
     }
-    
+
     self.result = [NSMutableString new];
     self.startTime = [[NSDate date] timeIntervalSince1970];
-    
+
     [self.iFlySpeechRecognizer startListening];
 }
 
@@ -110,16 +102,16 @@ RCT_EXPORT_METHOD(getParameter: (NSString *) parameter
 - (void) onResults: (NSArray *) results isLast: (BOOL) isLast {
     self.endTime = [[NSDate date] timeIntervalSince1970];
     NSNumber * duration = [NSNumber numberWithDouble: self.endTime - self.startTime];
-    
+
     NSMutableString * resultString = [NSMutableString new];
     NSDictionary * dic = results[0];
-    
+
     for (NSString * key in dic) {
         [resultString appendFormat:@"%@",key];
     }
 
     NSString * resultFromJson = [self stringFromJson:resultString];
-    
+
     [self.result appendString: resultFromJson];
 
     NSDictionary * result = @{
@@ -146,18 +138,18 @@ RCT_EXPORT_METHOD(getParameter: (NSString *) parameter
     if (params == NULL) {
         return nil;
     }
-    
+
     NSMutableString *tempStr = [[NSMutableString alloc] init];
     NSDictionary *resultDic  = [NSJSONSerialization JSONObjectWithData:
                                 [params dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:nil];
-    
+
     if (resultDic!= nil) {
         NSArray *wordArray = [resultDic objectForKey:@"ws"];
-        
+
         for (int i = 0; i < [wordArray count]; i++) {
             NSDictionary *wsDic = [wordArray objectAtIndex: i];
             NSArray *cwArray = [wsDic objectForKey:@"cw"];
-            
+
             for (int j = 0; j < [cwArray count]; j++) {
                 NSDictionary *wDic = [cwArray objectAtIndex:j];
                 NSString *str = [wDic objectForKey:@"w"];
@@ -170,9 +162,9 @@ RCT_EXPORT_METHOD(getParameter: (NSString *) parameter
 
 - (NSString *) getAbsolutePath: (NSString *) path {
     NSString * homePath = NSHomeDirectory();
-    
+
     path = [path stringByTrimmingCharactersInSet: [NSCharacterSet characterSetWithCharactersInString:@"/"]];
-    
+
     return [NSString stringWithFormat:@"%@/%@", homePath, path];
 }
 
