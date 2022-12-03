@@ -26,9 +26,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation files('libs/Msc.jar')
-    implementation files('libs/Sunflower.jar')
 
     implementation "com.facebook.react:react-native:+"
-    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
 }

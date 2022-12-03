@@ -25,8 +25,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.annotation.Nullable;
 
@@ -231,7 +229,7 @@ public class SpeechRecognizerModule extends ReactContextBaseJavaModule {
         params.putString("message", error.getErrorDescription());
         params.putString("plainDescription", error.getPlainDescription(true));
 
-        this.onJSEvent(getReactApplicationContext(),"onRecognizerError",params);
+        this.onJSEvent(getReactApplicationContext(), "onRecognizerError", params);
     }
 
     private void showTip(final String str) {
@@ -239,8 +237,8 @@ public class SpeechRecognizerModule extends ReactContextBaseJavaModule {
     }
 
     private void onJSEvent(ReactContext reactContext,
-                               String eventName,
-                               @Nullable WritableMap params) {
+                           String eventName,
+                           @Nullable WritableMap params) {
         reactContext
                 .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
                 .emit(eventName, params);

@@ -20,9 +20,6 @@ import com.iflytek.cloud.SpeechSynthesizer;
 import com.iflytek.cloud.SpeechUtility;
 import com.iflytek.cloud.SynthesizerListener;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.annotation.Nullable;
 
 /**
